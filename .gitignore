@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -107,3 +108,9 @@ Thumbs.db
 
 # Local development
 .local
+=======
+node_modules/
+dist/
+.env
+*.log
+>>>>>>> afa92a3fe6fa227c04b076adc33c5f7c569b2fbc
