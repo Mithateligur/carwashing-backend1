@@ -9,13 +9,19 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
-    "fastify": "^4.24.3",
     "@fastify/cors": "^9.0.1",
-    "dotenv": "^16.3.1"
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/pg": "^8.15.5",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
+    "@types/node": "^20.8.10",
     "tsx": "^4.1.4",
-    "@types/node": "^20.8.10"
+    "typescript": "^5.2.2"
   }
 }
