@@ -1,0 +1,94 @@
+{
+  "name": "CarWashing Admin - Araç Yıkama Yönetimi",
+  "short_name": "CarWash Admin",
+  "description": "Araç yıkama işletmenizi yönetin, müşterilere WhatsApp bildirimleri gönderin",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "categories": ["business", "productivity"],
+  "lang": "tr",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-dashboard.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Admin Arayüzü"
+    },
+    {
+      "src": "screenshot-customers.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "Müşteri Yönetimi"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Yeni Müşteri",
+      "short_name": "Müşteri Ekle",
+      "description": "Yeni müşteri kaydı oluştur",
+      "url": "/admin?action=add-customer",
+      "icons": [{"src": "shortcut-customer.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Aktif İşler",
+      "short_name": "İşler",
+      "description": "Aktif araç yıkama işleri",
+      "url": "/admin?view=active",
+      "icons": [{"src": "shortcut-jobs.png", "sizes": "96x96"}]
+    }
+  ]
+}
