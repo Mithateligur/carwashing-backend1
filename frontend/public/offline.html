@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Çevrimdışı - CarWashing Admin</title>
+    <meta name="theme-color" content="#3B82F6">
+    <style>
+        :root {
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding-top: var(--safe-area-inset-top);
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+        
+        .offline-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 400px;
+            margin: 1rem;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #FEF2F2;
+            color: #DC2626;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .status-indicator.online {
+            background: #F0FDF4;
+            color: #16A34A;
+        }
+        
+        .retry-btn {
+            margin-top: 1rem;
+            padding: 0.75rem 2rem;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+        
+        .retry-btn:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+        }
+        
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+        
+        .features {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .features h3 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .feature-icon {
+            color: #10B981;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📵</div>
+        <h1>Çevrimdışısınız</h1>
+        
+        <div class="status-indicator" id="statusIndicator">
+            <span id="statusIcon">🔴</span>
+            <span id="statusText">İnternet bağlantısı yok</span>
+        </div>
+        
+        <p>İnternet bağlantınızı kontrol edin. Bağlantı kurulduğunda otomatik olarak ana sayfaya yönlendirileceksiniz.</p>
+        
+        <button class="retry-btn" onclick="retryConnection()">🔄 Tekrar Dene</button>
+        
+        <div class="features">
+            <h3>Çevrimdışı Özellikler:</h3>
+            <ul>
+                <li><span class="feature-icon">✓</span> Önceki verileriniz saklandı</li>
+                <li><span class="feature-icon">✓</span> WhatsApp mesajları kuyruğa alınıyor</li>
+                <li><span class="feature-icon">✓</span> Bağlantı kurulduğunda senkronize olacak</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateConnectionStatus() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusIcon = document.getElementById('statusIcon');
+            const statusText = document.getElementById('statusText');
+            
+            if (navigator.onLine) {
+                statusIndicator.className = 'status-indicator online';
+                statusIcon.textContent = '🟢';
+                statusText.textContent = 'İnternet bağlantısı aktif';
+                
+                // Redirect to home after a brief delay
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                statusIndicator.className = 'status-indicator';
+                statusIcon.textContent = '🔴';
+                statusText.textContent = 'İnternet bağlantısı yok';
+            }
+        }
+        
+        function retryConnection() {
+            // Add loading state
+            const button = document.querySelector('.retry-btn');
+            const originalText = button.textContent;
+            button.textContent = '⏳ Kontrol ediliyor...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                updateConnectionStatus();
+                button.textContent = originalText;
+                button.disabled = false;
+                
+                if (navigator.onLine) {
+                    window.location.href = '/';
+                }
+            }, 1000);
+        }
+        
+        // Listen for connection changes
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+        
+        // Initial status check
+        updateConnectionStatus();
+        
+        // Auto-retry every 10 seconds
+        setInterval(() => {
+            if (!navigator.onLine) {
+                updateConnectionStatus();
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
